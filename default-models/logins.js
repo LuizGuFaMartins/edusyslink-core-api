@@ -29,8 +29,6 @@ const Login = database.define("logins", {
   }
 });
 
-// Login.hasMany(Student, { foreignKey: "login_id" });
-
 Login.sync();
 
 module.exports = Login;
