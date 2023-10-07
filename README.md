@@ -75,11 +75,33 @@ app.use(
 module.exports = app;
 ```
 
+## Database connection
+
+To connect to the database using sequelize, just pass the environment variables with the following names in your dot env file:
+
+```javascript
+EDUSYSLINK_DATABASE_HOST=your_host
+EDUSYSLINK_DATABASE_NAME=your_database_name
+EDUSYSLINK_DATABASE_USER=your_user
+EDUSYSLINK_DATABASE_PASSWORD=your_password
+EDUSYSLINK_DATABASE_DIALECT=your_database_dialect
+EDUSYSLINK_DATABASE_PORT=your_database_port
+EDUSYSLINK_DATABASE_TIMESTAMP=true
+EDUSYSLINK_DATABASE_UNDERSCORED=true
+EDUSYSLINK_DATABASE_UNDERSCORED_ALL=true
+EDUSYSLINK_DATABASE_POLL_MAX=10
+EDUSYSLINK_DATABASE_POLL_MIN=0
+EDUSYSLINK_DATABASE_POLL_ACQUIRE=30000
+EDUSYSLINK_DATABASE_POLL_IDLE=10000
+```
+
+Some of the variables are already defined with default values, according to the sequelize documentation, while others such as the host, database name, user, password and dialect must be defined for the connection to be made.
+
 ## Options
 
 This library provides some features that can be activated or not, according to the parameters passed at initialization.
 
-### Routes
+- #### Routes
 
 To generate routes from your database models you must pass the "generateRoutes" attribute as true within the "routes" object in the initialization options.
 
@@ -93,7 +115,7 @@ routes: {
 
 This option is true by default, but if a false value is assigned, the service will ignore the path of the models passed, as well as the middlewares.
 
-### Authentication
+- #### Authentication
 
 If you want to add authentication using Json Web Tokens, you will need to pass the "provide" attribute as true in the "authentication" object within the options.
 
@@ -104,9 +126,15 @@ authentication: {
 }
 ```
 
+After that, you will need to define an environment variable that stores your jwt's secret key with the following nomenclature:
+
+```javascript
+EDUSYSLINK_JWT_KEY=your_secret_key
+```
+
 This functionality is true by default, but can be disabled by setting the value of the "provide" attribute to false. You can also ignore authentication for specific models by passing their names in the "ignoreModels" attribute.
 
-### Models
+- #### Models
 
 You can use the database models provided by default to expand your application from them.
 
