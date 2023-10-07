@@ -13,7 +13,6 @@ const sequelizeMiddleware =
 module.exports = function (options) {
   options = verifyOptions(options);
   verifyPath(options.routes.modelsPath, options.routes.generateRoutes);
-  console.log("\n\n\n OPTIONS: ", options, "\n\n\n");
   if (options.authentication.provide && options.models.useDefaultModels) {
     options.routes.middlewares = [...options.routes.middlewares, verifyToken];
     router.use(authRouter);
@@ -105,7 +104,11 @@ function addMiddlewares(middlewares) {
 
 function ignoreModels(models, ignore) {
   return models.filter((model) => {
-    if (models.length ? !ignore.find((item) => item === modelName) : true) {
+    if (
+      models.length
+        ? !ignore.find((item) => item === model.replace(".js", ""))
+        : true
+    ) {
       return model;
     }
   });

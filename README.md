@@ -101,7 +101,7 @@ Some of the variables are already defined with default values, according to the 
 
 This library provides some features that can be activated or not, according to the parameters passed at initialization.
 
-- #### Routes
+### Routes
 
 To generate routes from your database models you must pass the "generateRoutes" attribute as true within the "routes" object in the initialization options.
 
@@ -115,7 +115,9 @@ routes: {
 
 This option is true by default, but if a false value is assigned, the service will ignore the path of the models passed, as well as the middlewares.
 
-- #### Authentication
+---
+
+### Authentication
 
 If you want to add authentication using Json Web Tokens, you will need to pass the "provide" attribute as true in the "authentication" object within the options.
 
@@ -126,15 +128,49 @@ authentication: {
 }
 ```
 
+This functionality is true by default, but can be disabled by setting the value of the "provide" attribute to false. You can also ignore authentication for specific models by passing their names in the "ignoreModels" attribute.
+
 After that, you will need to define an environment variable that stores your jwt's secret key with the following nomenclature:
 
 ```javascript
 EDUSYSLINK_JWT_KEY=your_secret_key
 ```
 
-This functionality is true by default, but can be disabled by setting the value of the "provide" attribute to false. You can also ignore authentication for specific models by passing their names in the "ignoreModels" attribute.
+Once configured, the system's routes will be protected, and to access them it will be necessary to create a user. 
+Two routes will be available and must be used to create a login and give authorization to a user.
 
-- #### Models
+
+#### First route is "/create-auth"
+
+This route will be used to register a new login to the system:
+
+```json
+{
+	"login_name": "Example name",
+	"login_email": "example@email.com",
+	"login_password": "example_password",
+	"login_type": "EXAMPLE" // You will need to define your own login types
+}
+```
+ - Obs: In the "login_type" property you will need to define your own login types. With different types you can allow access to specific routes or pages in your system.
+
+
+#### Second route is "/auth":
+
+This route will be used to validate the login registered in the previous route and will return an access token for the other protected routes in the system.
+
+```json
+{
+	"login_name": "Example name",
+	"login_email": "example@email.com"
+}
+```
+
+- Obs: The access token must be passed with the Bearer authentication type, in the http request header.
+
+---
+
+### Models
 
 You can use the database models provided by default to expand your application from them.
 
