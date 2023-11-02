@@ -64,7 +64,6 @@ app.use(
     },
     authentication: {
       provide: true,
-      ignoreModels: [],
     },
     models: {
       useDefaultModels: true,
@@ -128,7 +127,7 @@ authentication: {
 }
 ```
 
-This functionality is true by default, but can be disabled by setting the value of the "provide" attribute to false. You can also ignore authentication for specific models by passing their names in the "ignoreModels" attribute.
+This functionality is true by default, but can be disabled by setting the value of the "provide" attribute to false.
 
 After that, you will need to define an environment variable that stores your jwt's secret key with the following nomenclature:
 
