@@ -31,6 +31,4 @@ const Student = database.define(
 
 Student.belongsTo(Login, { foreignKey: "login_id", allowNull: false });
 
-Student.sync();
-
 module.exports = Student;

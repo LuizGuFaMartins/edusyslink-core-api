@@ -35,6 +35,4 @@ const Teacher = database.define(
 
 Teacher.belongsTo(Login, { foreignKey: "login_id", allowNull: false });
 
-Teacher.sync();
-
 module.exports = Teacher;

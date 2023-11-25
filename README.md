@@ -123,7 +123,6 @@ If you want to add authentication using Json Web Tokens, you will need to pass t
 ```javascript
 authentication: {
   provide: true,
-  ignoreModels: [],
 }
 ```
 

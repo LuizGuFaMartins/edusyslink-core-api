@@ -28,6 +28,4 @@ const Activity = database.define("activities", {
 
 Activity.belongsTo(Subject, { foreignKey: "subject_id", allowNull: false });
 
-Activity.sync();
-
 module.exports = Activity;

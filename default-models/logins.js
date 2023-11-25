@@ -33,6 +33,4 @@ const Login = database.define("logins", {
   }
 });
 
-Login.sync();
-
 module.exports = Login;
